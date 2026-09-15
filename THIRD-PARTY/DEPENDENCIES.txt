@@ -1,0 +1,10 @@
+CmlLib.Core/4.0.6 — https://www.nuget.org/packages/CmlLib.Core/4.0.6
+CmlLib.Core.Auth.Microsoft/3.3.1 — https://www.nuget.org/packages/CmlLib.Core.Auth.Microsoft/3.3.1
+CmlLib.Core.Commons/4.0.0 — https://www.nuget.org/packages/CmlLib.Core.Commons/4.0.0
+LZMA-SDK/19.0.0 — https://www.nuget.org/packages/LZMA-SDK/19.0.0
+Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1 — https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1
+Microsoft.Extensions.Logging.Abstractions/8.0.1 — https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/8.0.1
+Microsoft.Web.WebView2/1.0.1823.32 — https://www.nuget.org/packages/Microsoft.Web.WebView2/1.0.1823.32
+SharpZipLib/1.4.2 — https://www.nuget.org/packages/SharpZipLib/1.4.2
+XboxAuthNet/3.0.4 — https://www.nuget.org/packages/XboxAuthNet/3.0.4
+XboxAuthNet.Game/1.4.1 — https://www.nuget.org/packages/XboxAuthNet.Game/1.4.1

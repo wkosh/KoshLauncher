@@ -1,0 +1,10 @@
+.vs/
+**/bin/
+**/obj/
+artifacts/
+renders/
+*.user
+*.suo
+*.log
+*.protected
+settings.json

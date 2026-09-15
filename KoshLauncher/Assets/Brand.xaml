@@ -1,0 +1,24 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <DrawingImage x:Key="KoshMark">
+  <DrawingImage.Drawing>
+   <DrawingGroup>
+    <GeometryDrawing Brush="Transparent" Geometry="M0,0 H128 V128 H0 Z"/>
+    <!-- Custom split-stem K: blade serifs, fang terminals and a suspended drop. -->
+    <GeometryDrawing Geometry="M19,20 L53,20 L47,29 L47,83 L38,105 L31,87 L31,32 Z M53,59 L84,26 L78,22 L111,13 L100,44 L96,34 L70,63 Z M54,64 L72,60 L100,91 L112,108 L85,101 L60,75 L51,88 L51,71 Z">
+     <GeometryDrawing.Brush><LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+      <GradientStop Color="#FF7594" Offset="0"/><GradientStop Color="#FF244F" Offset="0.34"/>
+      <GradientStop Color="#D90738" Offset="0.68"/><GradientStop Color="#820D2F" Offset="1"/>
+     </LinearGradientBrush></GeometryDrawing.Brush>
+    </GeometryDrawing>
+    <!-- Beveled light catches emphasize the cuts without relying on blur. -->
+    <GeometryDrawing Brush="#FFB0C1" Geometry="M19,20 L53,20 L49,24 L26,24 Z M84,26 L111,13 L103,21 L89,30 Z"/>
+    <GeometryDrawing Brush="#FF5277" Geometry="M54,64 L72,60 L100,91 L69,68 L58,70 Z"/>
+    <GeometryDrawing Brush="#960E32" Geometry="M41,31 L47,29 L47,83 L38,105 L40,81 Z"/>
+    <GeometryDrawing Brush="#FF3B65" Geometry="M37,108 C37,108 32,115 32,118 C32,125 42,125 42,118 C42,115 37,108 37,108 Z"/>
+    <GeometryDrawing Brush="#FF9BB2" Geometry="M35,115 C33,118 34,121 36,121 C35,119 35,117 35,115 Z"/>
+    <GeometryDrawing Brush="#EE1748" Geometry="M89,101 L95,103 L95,109 C95,114 89,114 89,109 Z"/>
+   </DrawingGroup>
+  </DrawingImage.Drawing>
+ </DrawingImage>
+</ResourceDictionary>
