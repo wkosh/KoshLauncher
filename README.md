@@ -1,5 +1,8 @@
 # KoshLauncher
 
+<img width="1180" height="760" alt="9108" src="https://github.com/user-attachments/assets/fe1cdb10-dda5-4361-bb5a-a0990c3f6238" />
+
+
 > **Edição pública com código-fonte ofuscado.** Os identificadores internos foram renomeados e o C# compactado. Esta cópia compila normalmente; nomes exigidos pelo XAML, JSON e testes foram preservados. O código original legível não faz parte deste pacote. Ofuscação dificulta a leitura, mas a lógica continua acessível a quem recebe o código-fonte.
 
 Launcher de Minecraft Java para Windows, feito em C# / WPF / .NET 10, com identidade vampiresca em preto e vermelho.
@@ -114,7 +117,6 @@ https://www.youtube.com/watch?v=DLQIu8JBjws
 Bibliotecas: CmlLib.Core e CmlLib.Core.Auth.Microsoft.
 Fonte: Pirata One; licença OFL em KoshLauncher/Assets/Fonts/OFL.txt.
 A referência de organização visual foi o SKLauncher; a marca e interface Kosh são próprias.
-Projeto independente, sem afiliação à Mojang, Microsoft, Fabric ou SKLauncher.
+Projeto independente, sem afiliação à Mojang, Microsoft, Fabric ou outros launchers.
 
-"# KoshLauncher" <img width="1180" height="760" alt="9108" src="https://github.com/user-attachments/assets/ab3ad52f-36d8-43dd-93c6-d689aa3f8a70" />
-
+"# KoshLauncher by: wkosh"
