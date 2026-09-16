@@ -118,5 +118,3 @@ Bibliotecas: CmlLib.Core e CmlLib.Core.Auth.Microsoft.
 Fonte: Pirata One; licença OFL em KoshLauncher/Assets/Fonts/OFL.txt.
 A referência de organização visual foi o SKLauncher; a marca e interface Kosh são próprias.
 Projeto independente, sem afiliação à Mojang, Microsoft, Fabric ou outros launchers.
-
-# KoshLauncher by: wkosh
