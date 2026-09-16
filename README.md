@@ -116,4 +116,5 @@ Fonte: Pirata One; licença OFL em KoshLauncher/Assets/Fonts/OFL.txt.
 A referência de organização visual foi o SKLauncher; a marca e interface Kosh são próprias.
 Projeto independente, sem afiliação à Mojang, Microsoft, Fabric ou SKLauncher.
 
-"# KoshLauncher" 
+"# KoshLauncher" <img width="1180" height="760" alt="9108" src="https://github.com/user-attachments/assets/ab3ad52f-36d8-43dd-93c6-d689aa3f8a70" />
+
