@@ -1,6 +1,7 @@
 # KoshLauncher
 
-<img width="1162" height="748" alt="Screenshot_1" src="https://github.com/user-attachments/assets/33bbddfd-cbd4-44b1-a73b-5bbc6466b1d8" />
+
+<img width="1919" height="1038" alt="Screenshot_5" src="https://github.com/user-attachments/assets/d01b3a30-7c57-42ef-8ff0-5046135728ab" />
 
 
 
@@ -8,7 +9,28 @@
 
 Launcher de Minecraft Java para Windows, feito em C# / WPF / .NET 10, com identidade vampiresca em preto e vermelho.
 
-## Publicação protegida (1.0.0)
+## Novidades (v1.0.0)
+
+- Pesquisa de mods, modpacks, shaders, mundos e resource packs.
+- Integração com o catálogo CurseForge.
+- Instalação automática de modpacks e criação de perfis separados.
+- Suporte a Fabric, Forge, NeoForge e Quilt.
+- Escolha manual da versão do Minecraft e do Fabric Loader.
+- Suporte às versões tradicionais 1.x e à nova numeração 26.x.
+- Instalação e gerenciamento de OptiFine.
+- Skins para contas Microsoft e perfis offline.
+- Instalação automática do CustomSkinLoader para skins offline.
+- Login Microsoft ou utilização completamente offline por nickname.
+- Instâncias separadas para mods, configurações, mundos e logs.
+- Importação de mods diretamente pelo launcher.
+- Backup de mundos em ZIP.
+- Configuração de RAM, resolução e tela cheia.
+- Interface própria em preto e vermelho.
+- Barra de título personalizada.
+- Suporte correto à maximização e múltiplos monitores.
+- Executável único e protegido para Windows.
+
+## Publicação protegida (v1.0.0)
 
 O perfil `Protected` usa Obfuscar 2.2.50 para renomear tipos/membros e ocultar strings do assembly próprio antes de empacotar o EXE. Não exige licença, conexão de licenciamento ou mudança na conta. A interface WPF e o contrato JSON das configurações têm exclusões de compatibilidade. Bibliotecas de terceiros não são modificadas.
 
@@ -22,8 +44,6 @@ Esta proteção aumenta o esforço de análise, mas não impede engenharia rever
 
 Referência da ferramenta: https://docs.lextudio.com/obfuscar/getting-started/configuration
 
-## Novidades da versão 0.4.0
-
 - Interface atualizada: campos e listas escuros, navegação com ícones, marca vampiresca, barra de jogo compacta e cartões de gráficos/personagem.
 - OptiFine: consulta edições no site oficial, filtra prévias e permite instalar pelo launcher ou importar um JAR original. Identifica a versão base, prepara o Java e chama o instalador oficial sem abrir a janela externa. Instala em uma pasta temporária e publica o perfil ao concluir. Não combina OptiFine com Fabric automaticamente.
 - Skins: escolhe PNG 64×64 ou clássico 64×32, mostra prévia do rosto e permite aplicar o modelo clássico/slim à conta Microsoft conectada. A alteração só é enviada quando o usuário clica em Aplicar à conta Microsoft. Sessão local não aplica skin ao jogo sem integração adicional.
@@ -33,7 +53,7 @@ Instalação real do OptiFine 1.20.1 HD U I6 e leitura do perfil pelo CmlLib ver
 
 O executável inclui somente a ponte própria `Helpers/KoshOptifineBridge.class`; o OptiFine é obtido em tempo de uso do site oficial. O código da ponte está junto do projeto. Para recompilar após alterá-lo, use um JDK com `javac --release 8 KoshLauncher/Helpers/KoshOptifineBridge.java`.
 
-## Funcionalidades da versão 0.2.0
+## Funcionalidades da versão (v0.2.0)
 
 - Seleção de versões Vanilla e perfis locais, incluindo Fabric.
 - Criação de perfis Fabric na pasta do launcher.
