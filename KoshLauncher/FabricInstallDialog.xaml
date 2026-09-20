@@ -1,0 +1,82 @@
+<Window x:Class="KoshLauncher.FabricInstallDialog"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Instalar Fabric" Width="470" Height="390" ResizeMode="NoResize" WindowStyle="None"
+ WindowStartupLocation="CenterOwner" Background="Transparent" AllowsTransparency="True" Foreground="#F5EDF0" FontFamily="Segoe UI">
+    <Window.Resources>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="#F2E8EC"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="ItemSurface" Background="Transparent" CornerRadius="5" Padding="{TemplateBinding Padding}" Margin="3,1">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True"><Setter TargetName="ItemSurface" Property="Background" Value="#3B1626"/></Trigger>
+                            <Trigger Property="IsSelected" Value="True"><Setter TargetName="ItemSurface" Property="Background" Value="#661B35"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="#F2E8EC"/>
+            <Setter Property="Background" Value="#1B151D"/>
+            <Setter Property="BorderBrush" Value="#4B2A39"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="MaxDropDownHeight" Value="190"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Focusable="False" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="Surface" Background="#1B151D" BorderBrush="#4B2A39" BorderThickness="1" CornerRadius="7">
+                                            <Path Data="M0,0 L4,4 L8,0" Stroke="#D395A8" StrokeThickness="1.5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,13,0"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#D42A4D"/></Trigger></ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Content="{TemplateBinding SelectionBoxItem}" IsHitTestVisible="False" VerticalAlignment="Center" Margin="12,0,32,0"/>
+                            <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                                <Border Background="#151017" BorderBrush="#743047" BorderThickness="1" CornerRadius="8" MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,4,0,0">
+                                    <ScrollViewer MaxHeight="190" CanContentScroll="True" VerticalScrollBarVisibility="Auto"><ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/></ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Background="#110F14" BorderBrush="#743047" BorderThickness="1" CornerRadius="14">
+        <Grid>
+            <Grid.RowDefinitions><RowDefinition Height="46"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+            <Border Background="#18131B" CornerRadius="14,14,0,0" MouseLeftButtonDown="Header_MouseLeftButtonDown">
+                <Grid Margin="18,0,8,0">
+                    <TextBlock Text="Instalar Fabric" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center"/>
+                    <Button Content="×" Click="Cancel_Click" HorizontalAlignment="Right" Width="36" Height="30" Padding="0" Background="Transparent" BorderThickness="0" Foreground="#F5EDF0" FontSize="20"/>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Row="1" Margin="26,22">
+                <TextBlock Text="Escolha as versões" FontSize="22" FontWeight="SemiBold"/>
+                <TextBlock Text="O launcher criará um perfil separado com a combinação selecionada." Foreground="#B89EAA" Margin="0,7,0,22" TextWrapping="Wrap"/>
+                <TextBlock Text="VERSÃO DO MINECRAFT" Foreground="#D68BA0" FontSize="10" Margin="0,0,0,7"/>
+                <ComboBox x:Name="MinecraftVersionBox" Height="42" Padding="12,5" SelectionChanged="MinecraftVersionBox_SelectionChanged"/>
+                <TextBlock Text="VERSÃO DO FABRIC LOADER" Foreground="#D68BA0" FontSize="10" Margin="0,18,0,7"/>
+                <ComboBox x:Name="LoaderVersionBox" Height="42" Padding="12,5"/>
+                <TextBlock x:Name="HintText" Text="A versão estável mais recente é selecionada automaticamente." Foreground="#927C87" FontSize="11" Margin="0,10,0,0"/>
+                <Grid Margin="0,22,0,0">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Button Content="Cancelar" Click="Cancel_Click" Padding="12,11" Margin="0,0,6,0" Background="#211820" Foreground="#F5EDF0" BorderBrush="#49313D"/>
+                    <Button x:Name="InstallActionButton" Grid.Column="1" Content="Instalar" Click="Install_Click" Padding="12,11" Margin="6,0,0,0" Background="#A31339" Foreground="White" BorderBrush="#E22E5A"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

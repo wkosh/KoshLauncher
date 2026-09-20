@@ -4,7 +4,7 @@
 
 Launcher de Minecraft Java para Windows, feito em C# / WPF / .NET 10, com identidade vampiresca em preto e vermelho.
 
-## Publicação protegida (0.4.2)
+## Publicação protegida (1.0.0)
 
 O perfil `Protected` usa Obfuscar 2.2.50 para renomear tipos/membros e ocultar strings do assembly próprio antes de empacotar o EXE. Não exige licença, conexão de licenciamento ou mudança na conta. A interface WPF e o contrato JSON das configurações têm exclusões de compatibilidade. Bibliotecas de terceiros não são modificadas.
 
@@ -62,6 +62,20 @@ O perfil Fabric passa a aparecer na lista. Jogar prepara as dependências restan
 Importe mods adequados para a versão e o loader; o importador copia os arquivos escolhidos e não resolve dependências.
 Use Configurações para salvar RAM, resolução, tela cheia, neon e filtro da lista.
 Feche o jogo antes de importar mods ou criar backup; o launcher bloqueia essas operações enquanto sua execução está ativa.
+
+### Catálogo CurseForge
+
+A aba **Explorar** pesquisa mods, modpacks, shaders, pacotes de recursos e mundos no catálogo oficial. Mods, shaders, pacotes de recursos e mundos são baixados diretamente para a pasta correspondente do perfil selecionado. Por enquanto, modpacks são baixados como arquivo para a pasta `modpacks`; a criação automática de um novo perfil a partir do manifesto ainda não está habilitada.
+
+A API oficial exige uma chave. Por segurança, este repositório público não inclui nenhuma credencial. Antes de executar ou publicar, configure a variável de ambiente `CURSEFORGE_API_KEY` com uma chave aprovada para seu aplicativo no CurseForge for Studios. Nunca envie a chave ao GitHub nem a grave diretamente no código.
+
+A pesquisa e os downloads não exigem login Microsoft: também funcionam com nick e perfil local. O seletor de versão da aba Explorar é preenchido automaticamente pelas versões disponíveis no launcher.
+
+Para usar uma skin offline, selecione uma imagem em **Personalizar**, escolha um perfil Fabric e clique em **Usar no perfil offline**. O launcher instala o CustomSkinLoader e salva a imagem localmente com o nick atual. Essa skin aparece somente para o jogador local; outros jogadores precisam de uma integração compatível para vê-la.
+
+Em **Instalações**, escolha primeiro uma versão Vanilla e instale Fabric, Forge, NeoForge ou Quilt. Ao baixar um mod pela aba Explorar, selecione o perfil compatível na barra inferior: o launcher filtra o arquivo pelo loader e instala no diretório desse perfil. Shaders, resource packs e mundos também exigem um perfil de destino; mundos ZIP são extraídos diretamente para `saves`.
+
+Ao baixar um modpack CurseForge, não é necessário escolher uma instância antes: o launcher lê `manifest.json`, prepara o loader indicado, cria um perfil exclusivo, copia os overrides e instala a lista de arquivos do pacote. A criação é cancelada e a nova instância é removida se alguma etapa falhar.
 
 ## Publicar como um único executável
 

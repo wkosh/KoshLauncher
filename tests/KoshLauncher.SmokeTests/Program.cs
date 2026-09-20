@@ -43,6 +43,13 @@ class Smoke
             !Control<TextBox>(window, "NicknameTextBox").IsEnabled, "busy controls locked");
         Call(window, "DefinirOcupado", false);
         Assert(Control<Button>(window, "PlayButton").IsEnabled, "busy controls restored");
+        versions.Items.Add("26.2");
+        versions.SelectedItem = "26.2";
+        window.Dispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+        Assert(versions.Items.Contains("26.2"), "new date-based version scheme preserved");
+        Control<Button>(window, "ExploreNav").RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        Assert(Control<ComboBox>(window, "CurseForgeVersionBox").Items.Count > 0 &&
+            (string)Control<ComboBox>(window, "CurseForgeVersionBox").Items[0] == "26.3", "CurseForge versions include date-based releases");
         Control<CheckBox>(window, "NeonToggle").IsChecked = false;
         Assert(Control<TextBlock>(window, "BrandText").Foreground is SolidColorBrush, "neon disabled");
         Control<CheckBox>(window, "NeonToggle").IsChecked = true;
@@ -104,6 +111,16 @@ class Smoke
         catch (TargetInvocationException ex) when (ex.InnerException is InvalidDataException) { invalidSkin = true; }
         Assert(invalidSkin, "invalid PNG rejected");
         Assert(!Control<Button>(window, "ApplySkinButton").IsEnabled, "skin upload disabled without account");
+        Assert(Control<Button>(window, "ApplyOfflineSkinButton").IsEnabled, "offline skin action available without account");
+        string? previousCurseForgeKey = Environment.GetEnvironmentVariable("CURSEFORGE_API_KEY");
+        try
+        {
+            Environment.SetEnvironmentVariable("CURSEFORGE_API_KEY", "test-public-source-key");
+            var configuredKey = (string)typeof(MainWindow).GetMethod("ReadCurseForgeKey", flags)!.Invoke(window, null)!;
+            Assert(configuredKey == "test-public-source-key", "CurseForge credential reads environment variable");
+        }
+        finally { Environment.SetEnvironmentVariable("CURSEFORGE_API_KEY", previousCurseForgeKey); }
+        Assert(window.FindName("CurseForgeApiKeyBox") == null, "final UI does not expose API key controls");
         string fakeJar = Path.Combine(scratch, "OptiFine_1.20.1_HD_U_TEST.jar");
         using (var zip = System.IO.Compression.ZipFile.Open(fakeJar, System.IO.Compression.ZipArchiveMode.Create))
             zip.CreateEntry("optifine/Installer.class");
@@ -135,9 +152,10 @@ class Smoke
         var host = new Border { Child = root, Background = new SolidColorBrush(Color.FromRgb(9,9,11)) };
         host.Resources = window.Resources;
         System.Windows.Documents.TextElement.SetForeground(host, new SolidColorBrush(Color.FromRgb(238,232,234)));
-        foreach (string page in new[] { "Jogar", "Instalações", "Aparência", "Personalizar" })
+        foreach (string page in new[] { "Jogar", "Instalações", "Aparência", "Personalizar", "Explorar" })
         {
-            Call(window, "Navigate_Click", new Button { Tag = page }, new RoutedEventArgs());
+            string navigation = page switch { "Jogar" => "HomeNav", "Instalações" => "InstallNav", "Aparência" => "SettingsNav", "Personalizar" => "CustomizationNav", _ => "ExploreNav" };
+            Control<Button>(window, navigation).RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             foreach (var size in new[] { (1180, 760), (1000, 680) })
             {
                 window.Width = size.Item1; window.Height = size.Item2;
@@ -152,7 +170,7 @@ class Smoke
                 encoder.Save(file);
             }
         }
-        Console.WriteLine("PASS eight page renders: " + output);
+        Console.WriteLine("PASS ten page renders: " + output);
         // Do not invoke window closing/save during a read-only smoke check.
     }
 }

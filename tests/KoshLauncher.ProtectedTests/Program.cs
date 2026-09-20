@@ -46,6 +46,10 @@ internal static class Program
         mapping = XDocument.Load(Path.Combine(protectedDir, "Mapping.xml"));
         Check(assembly.GetType("KoshLauncher.OptifineService") == null, "service name obfuscated");
         Check(assembly.GetType("KoshLauncher.MainWindow")!.GetMethod("Jogar_Click", BindingFlags.Instance | BindingFlags.NonPublic) == null, "launch method name obfuscated");
+        var curseForgeProjectType = MappedType("KoshLauncher.CurseForgeProject");
+        Check(curseForgeProjectType.GetProperty("Name") != null && curseForgeProjectType.GetProperty("Summary") != null &&
+            curseForgeProjectType.GetProperty("LogoUrl") != null && curseForgeProjectType.GetProperty("Details") != null,
+            "CurseForge card bindings preserved after obfuscation");
         var app = new Application();
         var window = (Window)Activator.CreateInstance(assembly.GetType("KoshLauncher.MainWindow")!)!;
         var settingsType = MappedType("KoshLauncher.LauncherSettings");
@@ -63,7 +67,7 @@ internal static class Program
         var root = (FrameworkElement)window.Content;
         window.Content = null;
         var host = new Border { Child = root, Resources = window.Resources };
-        foreach (string navigation in new[] { "HomeNav", "InstallNav", "CustomizationNav", "SettingsNav" })
+        foreach (string navigation in new[] { "HomeNav", "InstallNav", "ExploreNav", "CustomizationNav", "SettingsNav" })
         {
             ((Button)window.FindName(navigation)).RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             foreach (var size in new[] { new Size(1000, 680), new Size(1180, 760) })
@@ -75,7 +79,7 @@ internal static class Program
                 using var file = File.Create(Path.Combine(scratch, navigation + size.Width + ".png")); encoder.Save(file);
             }
         }
-        Console.WriteLine("PASS protected WPF navigation and eight renders: " + scratch);
+        Console.WriteLine("PASS protected WPF navigation and ten renders: " + scratch);
         var catalog = (Array)Call("KoshLauncher.OptifineService", "ParseCatalog", null, "OptiFine_1.20.1_HD_U_I6.jar OptiFine_1.20.1_HD_U_I6.jar")!;
         Check(catalog.Length == 1 && catalog.GetValue(0)!.ToString()!.Contains("1.20.1"), "OptiFine parsing and display after obfuscation");
         var skin = BitmapSource.Create(64, 64, 96, 96, PixelFormats.Bgra32, null, new byte[64 * 64 * 4], 256);
